@@ -16,15 +16,22 @@ func main() {
 	}
 	key := os.Getenv("OPENAI_KEY")
 	client := openai.NewClient(key)
-	response, err := client.CreateCompletion(context.Background(), openai.CompletionRequest{
-		Model:  openai.GPT3TextDavinci003,
-		Prompt: string(content),
-    MaxTokens: 1000,
+	response, err := client.CreateChatCompletion(context.Background(), openai.ChatCompletionRequest{
+		Model:            openai.GPT3Dot5Turbo,
+		Messages:         []openai.ChatCompletionMessage{
+      {
+      	Role:    "user",
+      	Content: string(content),
+      },
+    },
+		MaxTokens:        4000,
+		Temperature:      0,
 	})
 
 	if err != nil {
     log.Fatalf("Error creating completion: %v", err)
 	}
 
-	os.Stdout.WriteString(response.Choices[0].Text)
+	os.Stdout.WriteString(response.Choices[0].Message.Content)
 }
+
