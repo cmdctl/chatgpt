@@ -24,7 +24,6 @@ func main() {
       	Content: string(content),
       },
     },
-		MaxTokens:        4000,
 		Temperature:      0,
 	})
 
@@ -32,6 +31,6 @@ func main() {
     log.Fatalf("Error creating completion: %v", err)
 	}
 
-	os.Stdout.WriteString(response.Choices[0].Message.Content)
+	os.Stdout.WriteString(response.Choices[0].Message.Content + "\n")
 }
 
