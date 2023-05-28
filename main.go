@@ -15,7 +15,6 @@ func constructMessages(content string, delimiter string) []openai.ChatCompletion
 	chunks := strings.Split(content, delimiter)
 	messages := make([]openai.ChatCompletionMessage, len(chunks))
 	for i, chunk := range chunks {
-		// role is either "user" or "ai" if i is even or odd
 		role := "user"
 		if i%2 == 0 {
 			role = "assistant"
