@@ -12,21 +12,21 @@ import (
 )
 
 func constructMessages(content string, delimiter string) []openai.ChatCompletionMessage {
-  chunks := strings.Split(content, delimiter)
-  messages := make([]openai.ChatCompletionMessage, len(chunks))
-  for i, chunk := range chunks {
-    // role is either "user" or "ai" if i is even or odd
-    role := "user"
-    if i % 2 == 0 {
-      role = "assistant"
-    }
+	chunks := strings.Split(content, delimiter)
+	messages := make([]openai.ChatCompletionMessage, len(chunks))
+	for i, chunk := range chunks {
+		// role is either "user" or "ai" if i is even or odd
+		role := "user"
+		if i%2 == 0 {
+			role = "assistant"
+		}
 
-    messages[i] = openai.ChatCompletionMessage{
-      Role:    role,
-      Content: chunk,
-    }
-  }
-  return messages
+		messages[i] = openai.ChatCompletionMessage{
+			Role:    role,
+			Content: chunk,
+		}
+	}
+	return messages
 }
 func main() {
 	var delimiter string
@@ -39,9 +39,9 @@ func main() {
 	key := os.Getenv("OPENAI_KEY")
 	client := openai.NewClient(key)
 	response, err := client.CreateChatCompletion(context.Background(), openai.ChatCompletionRequest{
-		Model:    openai.GPT3Dot5Turbo,
-		Messages: constructMessages(string(content), delimiter),
-    Temperature: 0,
+		Model:       openai.GPT3Dot5Turbo,
+		Messages:    constructMessages(string(content), delimiter),
+		Temperature: 0,
 	})
 
 	if err != nil {
@@ -50,4 +50,3 @@ func main() {
 
 	os.Stdout.WriteString(response.Choices[0].Message.Content + "\n")
 }
-
