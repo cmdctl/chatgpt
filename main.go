@@ -35,7 +35,7 @@ func main() {
 	if err != nil {
 		log.Fatal("Error reading from stdin")
 	}
-	key := os.Getenv("OPENAI_KEY")
+	key := os.Getenv("OPENAI_API_KEY")
 	client := openai.NewClient(key)
 	response, err := client.CreateChatCompletion(context.Background(), openai.ChatCompletionRequest{
 		Model:       openai.GPT3Dot5Turbo,
