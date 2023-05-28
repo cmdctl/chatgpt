@@ -1,4 +1,4 @@
-module github.com/cmdctl/gptcoder
+module github.com/cmdctl/chatgpt
 
 go 1.20
 
