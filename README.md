@@ -25,7 +25,7 @@ go mod download
 4. Set your OpenAI API key as an environment variable:
 
 ```
-export OPENAI_KEY=your-api-key
+export OPENAI_API_KEY=your-api-key
 ```
 
 ## Usage

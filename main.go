@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"flag"
-	"io/ioutil"
+	"io"
 	"log"
 	"os"
 	"strings"
@@ -27,11 +27,12 @@ func constructMessages(content string, delimiter string) []openai.ChatCompletion
 	}
 	return messages
 }
+
 func main() {
 	var delimiter string
 	flag.StringVar(&delimiter, "d", "", "Delimiter to use between messages")
 	flag.Parse()
-	content, err := ioutil.ReadAll(os.Stdin)
+	content, err := io.ReadAll(os.Stdin)
 	if err != nil {
 		log.Fatal("Error reading from stdin")
 	}
