@@ -27,7 +27,6 @@ func constructMessages(content string, delimiter string) []openai.ChatCompletion
 	}
 	return messages
 }
-
 func main() {
 	var delimiter string
 	flag.StringVar(&delimiter, "d", "", "Delimiter to use between messages")
@@ -38,11 +37,14 @@ func main() {
 	}
 	key := os.Getenv("OPENAI_API_KEY")
 	client := openai.NewClient(key)
-	response, err := client.CreateChatCompletion(context.Background(), openai.ChatCompletionRequest{
+
+  request := openai.ChatCompletionRequest{
 		Model:       "gpt-4-1106-preview",
 		Messages:    constructMessages(string(content), delimiter),
-		Temperature: 0,
-	})
+		Temperature: 0.4,
+	}
+
+	response, err := client.CreateChatCompletion(context.Background(), request)
 
 	if err != nil {
 		log.Fatalf("Error creating completion: %v", err)
