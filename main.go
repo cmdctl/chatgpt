@@ -39,7 +39,7 @@ func main() {
 	key := os.Getenv("OPENAI_API_KEY")
 	client := openai.NewClient(key)
 	response, err := client.CreateChatCompletion(context.Background(), openai.ChatCompletionRequest{
-		Model:       openai.GPT3Dot5Turbo,
+		Model:       "gpt-4-1106-preview",
 		Messages:    constructMessages(string(content), delimiter),
 		Temperature: 0,
 	})
