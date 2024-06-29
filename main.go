@@ -39,7 +39,7 @@ func main() {
 	client := openai.NewClient(key)
 
   request := openai.ChatCompletionRequest{
-		Model:       "gpt-4-1106-preview",
+		Model:       "gpt-4o",
 		Messages:    constructMessages(string(content), delimiter),
 		Temperature: 0.4,
 	}
